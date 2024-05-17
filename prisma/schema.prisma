@@ -1,0 +1,21 @@
+datasource db {
+  url      = env("DATABASE_URL")
+  provider = "postgresql"
+}
+
+generator dacha_client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @default(autoincrement())
+  firstName String @db.VarChar() @map("first_name")
+  lastname String @db.VarChar() @map("last_name")
+  email String @db.VarChar() @map("email")
+  image String? @db.VarChar() @map("image")
+  accessToken String? @db.VarChar() @map("access_token")
+  refreshToken String? @db.VarChar() @map("refresh_token")
+
+  @@id([id])
+  @@map("user")
+}
